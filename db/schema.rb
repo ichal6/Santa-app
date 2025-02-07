@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_07_150500) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_07_150600) do
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "friend_id", null: false
@@ -35,6 +35,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_07_150500) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "shared_wish_lists", force: :cascade do |t|
+    t.integer "fr_id", null: false
+    t.integer "wl_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "status_friendships", force: :cascade do |t|
@@ -81,6 +88,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_07_150500) do
   add_foreign_key "gifts", "status_gifts"
   add_foreign_key "gifts", "users", column: "friend_user_id"
   add_foreign_key "sessions", "users"
+  add_foreign_key "shared_wish_lists", "friendships", column: "fr_id"
+  add_foreign_key "shared_wish_lists", "wish_lists", column: "wl_id"
   add_foreign_key "wish_lists", "users"
   add_foreign_key "wish_lists_gifts", "gifts"
   add_foreign_key "wish_lists_gifts", "wish_lists", column: "wl_id"
