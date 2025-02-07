@@ -8,8 +8,8 @@ class CreateFriendships < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    add_foreign_key :friendships, :users, column: :user_id
-    add_foreign_key :friendships, :users, column: :friend_id
+    add_foreign_key :friendships, :users, column: :user_id, on_delete: :cascade
+    add_foreign_key :friendships, :users, column: :friend_id, on_delete: :cascade
     add_foreign_key :friendships, :status_friendships, column: :status_id
   end
 end

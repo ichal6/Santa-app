@@ -8,6 +8,6 @@ class CreateWishLists < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    add_foreign_key :wish_lists, :users, column: :user_id
+    add_foreign_key :wish_lists, :users, column: :user_id, on_delete: :nullify
   end
 end

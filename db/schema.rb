@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_07_150700) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_07_150600) do
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "friend_id", null: false
@@ -83,15 +83,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_07_150700) do
   end
 
   add_foreign_key "friendships", "status_friendships", column: "status_id"
-  add_foreign_key "friendships", "users"
-  add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "friendships", "users", column: "friend_id", on_delete: :cascade
+  add_foreign_key "friendships", "users", on_delete: :cascade
   add_foreign_key "gifts", "status_gifts"
-  add_foreign_key "gifts", "users", column: "friend_user_id"
   add_foreign_key "gifts", "users", column: "friend_user_id", on_delete: :nullify
   add_foreign_key "sessions", "users"
-  add_foreign_key "shared_wish_lists", "friendships", column: "fr_id"
-  add_foreign_key "shared_wish_lists", "wish_lists", column: "wl_id"
-  add_foreign_key "wish_lists", "users"
-  add_foreign_key "wish_lists_gifts", "gifts"
-  add_foreign_key "wish_lists_gifts", "wish_lists", column: "wl_id"
+  add_foreign_key "shared_wish_lists", "friendships", column: "fr_id", on_delete: :nullify
+  add_foreign_key "shared_wish_lists", "wish_lists", column: "wl_id", on_delete: :cascade
+  add_foreign_key "wish_lists", "users", on_delete: :nullify
+  add_foreign_key "wish_lists_gifts", "gifts", on_delete: :cascade
+  add_foreign_key "wish_lists_gifts", "wish_lists", column: "wl_id", on_delete: :cascade
 end
