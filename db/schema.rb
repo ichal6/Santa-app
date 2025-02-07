@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_07_150200) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_07_150300) do
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "friend_id", null: false
@@ -45,8 +45,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_07_150200) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  create_table "wish_lists", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.boolean "is_public", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "friendships", "status_friendships", column: "status_id"
   add_foreign_key "friendships", "users"
   add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "sessions", "users"
+  add_foreign_key "wish_lists", "users"
 end
