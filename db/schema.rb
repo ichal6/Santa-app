@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_07_150600) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_08_202100) do
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "friend_id", null: false
@@ -26,6 +26,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_07_150600) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "owner_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -87,6 +88,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_07_150600) do
   add_foreign_key "friendships", "users", on_delete: :cascade
   add_foreign_key "gifts", "status_gifts"
   add_foreign_key "gifts", "users", column: "friend_user_id", on_delete: :nullify
+  add_foreign_key "gifts", "users", column: "owner_id", on_delete: :cascade
   add_foreign_key "sessions", "users"
   add_foreign_key "shared_wish_lists", "friendships", column: "fr_id", on_delete: :nullify
   add_foreign_key "shared_wish_lists", "wish_lists", column: "wl_id", on_delete: :cascade
