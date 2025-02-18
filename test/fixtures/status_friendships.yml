@@ -1,7 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+waiting:
+  id: 1
+  name: Waiting for approval
 
-two:
-  name: MyString
+approved:
+  id: 2
+  name: Approved
+
+declined:
+  id: 3
+  name: Declined
