@@ -1,4 +1,4 @@
-class AddOwnerIdToGifts < ActiveRecord::Migration[8.0]
+class ModifyGiftsAndAddConstraints < ActiveRecord::Migration[8.0]
   def change
     add_column :gifts, :owner_id, :integer, null: false
 
