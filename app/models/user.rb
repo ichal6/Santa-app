@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :owned_gifts, class_name: "Gift", foreign_key: "owner_id", dependent: :destroy
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
-  first_name = ->(n) { n.strip.titleize }
-  last_name = ->(n) { n.strip.titleize }
-  birth_date = ->(d) { d.to_date }
+  normalizes :first_name, with: ->(n) { n.strip.titleize }
+  normalizes :last_name, with: ->(n) { n.strip.titleize }
+  normalizes :birth_date, with: ->(d) { d.to_date }
 end
